@@ -11,7 +11,7 @@ Shell scripts to automate installing BAP and building from source.
 Examples to verify lifter behaviour.
 
 ## Other files
-`get_opcode.sh` returns the opcodes of ARMv8 instructions.
+`get_opcode.sh` returns the opcodes of ARMv8 instructions. (-v WIP)
 ```
 $ ./get_opcode.sh "mov x0, x12; cmp x20, x19"
 e0 03 0c aa 9f 02 13 eb
