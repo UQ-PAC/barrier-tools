@@ -2,8 +2,8 @@
 
 This [BAP](https://github.com/BinaryAnalysisPlatform/bap) plugin
 provides support for `dmb`, `dsb` and `isb` instructions in ARMv8
-by representing them in BIL/BIR as calls to external functions.
-For example, using `bap-mc` to lift `dmb ish;` into BIL gives 
+by representing them in BIL/BIR as function calls.
+For example, using `bap-mc` to lift the opcode of `dmb ish` into BIL gives 
 ```
 $ bap-mc --arch=aarch64 --show-bil -- bf 3b 03 d5
 {
@@ -30,17 +30,32 @@ $ bap disassemble a.out -d
 000003e7: sub __arm_barrier_dmb_ish(__arm_barrier_dmb_ish_result)
 000005cb: __arm_barrier_dmb_ish_result :: out u32 = R0
 ```
-This extraneous information about the function (`sub ...`) *should*™
-be able to be removed without worry, leaving the user to extract the
-location of the barriers by matching against
-`__arm_barrier_<type>_<option>` in the output.
-This will be confirmed soon.
+The function stubs at the bottom (`sub ...`) can be ignored,
+so to identify barriers in the output, search for function calls
+with names matching `__arm_barrier_<type>_<option>`.
 
 ## Installation
-After BAP has been successfully installed, run `./autobuild.sh`.
-Note that if the directory does not exist, the script will create
-`${HOME}/.local/share/bap/primus/semantics` and copy `aarch64barrier.lisp`
-in so BAP can see it.
 
-**Note:** it *may* be necessary to also install BAP's dependencies through
-`../build_bap.sh` to get `barrier.ml` to compile --- need to test this.
+### Installing `bap`
+1. Change to your preferred OPAM switch (run `opam switch list` to list them).
+  If there's only one switch, that's the system one -- create a new one with
+  `opam switch create <switch-name> 4.09.0`.
+2. Run `opam update`.
+3. Run `opam install bap`.
+4. Check that `bap` has been installed with `bap --version`.
+
+This plugin does not require modifying `bap`'s source.
+
+### Installing `barrier`
+
+1. Just run `./autobuild.sh`. 
+
+Note that if the directory `${HOME}/.local/share/bap/primus/semantics`
+does not exist, the script will create it and copy `aarch64barrier.lisp`
+in so `bap` can see it.
+
+### Troubleshooting
+
+When running `./autobuild.sh`, if you get an error complaining about function
+signatures (like "applied to too many arguments"), run `opam update; opam upgrade`
+to update BAP's cached interface files.
