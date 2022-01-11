@@ -5,20 +5,28 @@
 # install relevant dependencies
 echo "[*] Installing dependencies now..."
 ./install_deps.sh
-echo "[+] Success"
+
+if [ $? -eq 0 ]; then
+	echo "[+] Success"
+else
+	echo "[-] Uh oh...."
+fi
 
 # clone and set up environment
 echo "[*] Setting up directories..."
 ./clone_and_configure.sh
-echo "[+] Success"
+
+if [ $? -eq 0 ]; then
+	echo "[+] Success"
+else
+	echo "[-] Uh oh...."
+fi
 
 # install bap (or try at least -.-)
 echo "[*] Attempting to install bap..."
 ./build_and_install.sh
-ret=$?
-echo "[+] Success"
 
-if [ $ret -eq 0 ]; then
+if [ $? -eq 0 ]; then
 	echo "[+] We should be done!"
 else
 	echo "[-] Uh oh...."

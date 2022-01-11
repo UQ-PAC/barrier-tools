@@ -6,7 +6,7 @@ CURR_SWITCH=$(opam switch show)
 CURR_DIR=${PWD##*/}
 
 # First enter the bap directory (assumed to exist, run after `clone_and_configure.sh`)
-if [ ${CURR_DIR} -ne "bap" ]; then
+if [ ! ${CURR_DIR} = "bap" ]; then
 	cd bap;
 fi
 
