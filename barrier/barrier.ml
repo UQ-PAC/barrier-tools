@@ -37,7 +37,7 @@ let option_as_string n =
 
 let provide_barrier_primitive () =
   let types = Lambda.Type.Spec.(tuple [sym; int] @-> any) in
-  let docs = "(barrier) produces a barrier effect" in
+  let docs = "(barrier sym opt) represents a barrier of type sym (as a symbol, e.g. :dmb) with option opt as a bitvector. it gets reified into a function call in BIL/BIR output" in
   Sigma.declare ~types ~package:"aarch64" ~docs "barrier"
     ~body:(fun target ->
         let+ (module CT) = Theory.(instance>=>require) () in
