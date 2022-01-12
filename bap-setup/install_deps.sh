@@ -5,7 +5,7 @@
 
 # make sure opam is setup
 opam init
-eval $(opam env)
+eval $(opam env) || source ~/.profile
 
 # install dependencies
 opam install bap --deps-only

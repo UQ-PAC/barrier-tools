@@ -1,8 +1,8 @@
 #!/bin/bash
 
-# gets the bap source and configures it for 
-
 # configures bap for specific use with our lifter
+
+source ~/.profile
 
 # make sure we're inside bap directory (or grab it if not)
 CURR=${PWD##*/} # get last name of dir
