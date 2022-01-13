@@ -1,16 +1,21 @@
 #!/bin/bash
 
-# gets the bap source and configures it for 
-
 # configures bap for specific use with our lifter
+
+source ~/.profile
 
 # make sure we're inside bap directory (or grab it if not)
 CURR=${PWD##*/} # get last name of dir
 
-if [ ${CURR} -ne "bap" ]; then
-	echo "[!] Assuming bap hasn't been cloned, so cloning and moving inside...";
+if [ -d "bap" ]; then
+	cd bap
+else
+	echo "[!] Bap directory not found, either we're already inside or we need to clone";
+	if [ ! ${CURR} = "bap" ]; then
+		echo "[!] Assuming bap hasn't been cloned, so cloning and moving inside...";
 	
-	git clone "https://github.com/UQ-PAC/bap.git" && cd bap
+		git clone "https://github.com/UQ-PAC/bap.git" && cd bap
+	fi
 fi
 
 # configure bap installation for our use
@@ -24,6 +29,13 @@ location=$(opam config var prefix) # where to find opam information (dependencie
 # will reduce the size of the end binary, but we decided this currently isn't a major detriment
 # to the overall project at the cost of exhaustive hours deciding which features are crucial to execution
 # and not.
-features="--enable-everything --enable-arm --disable-ghidra" # 
 
-./configure ${features} ${location} ${llvm_params}
+#  ghidra is unneeded, and toplevel introduced `baptop` which was giving us compilation errors
+features="--enable-everything --enable-arm --disable-toplevel --disable-ghidra"
+
+./configure ${features} --prefix=${location} ${llvm_params}
+
+if [ $? -ne 0 ]; then
+	echo "[-] Something went wrong in configuration"
+	exit 42
+fi
