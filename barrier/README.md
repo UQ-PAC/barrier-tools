@@ -36,17 +36,23 @@ with names matching `__arm_barrier_<type>_<option>`.
 
 ## Installation
 
-### Installing `bap`
+### 1. Installing `bap`
+
+To install **PAC's fork** of BAP (compile from source):
+1. `cd` to the parent directory that `bap` will be cloned into.
+2. Run `barrier-tools/bap-setup/all_in_one.sh`. This will install relevant
+  dependencies, clone, configure and build PAC's fork of `bap`.
+
+Alternatively, to install the **main version** of BAP from OPAM:
 1. Change to your preferred OPAM switch (run `opam switch list` to list them).
   If there's only one switch, that's the system one -- create a new one with
   `opam switch create <switch-name> 4.09.0`.
 2. Run `opam update`.
 3. Run `opam install bap`.
-4. Check that `bap` has been installed with `bap --version`.
 
-This plugin does not require modifying `bap`'s source.
+This plugin does not require modifying `bap`'s source. 
 
-### Installing `barrier`
+### 2. Installing the `barrier` plugin
 
 1. Just run `./autobuild.sh`. 
 
