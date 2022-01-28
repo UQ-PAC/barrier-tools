@@ -3,3 +3,4 @@ bapbundle install barrier.plugin &&
 searched_directory="${HOME}/.local/share/bap/primus/semantics" &&
 mkdir -p -v "$searched_directory" &&
 cp aarch64barrier.lisp "$searched_directory"/aarch64barrier.lisp
+cp aarch64missinginsns.lisp "$searched_directory"/aarch64missinginsns.lisp
