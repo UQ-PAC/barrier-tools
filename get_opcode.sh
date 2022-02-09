@@ -19,7 +19,7 @@
 INSN=$1
 
 # make storage area
-TMP_DIR=/tmp/decomp/${USER}
+TMP_DIR=/tmp/${USER}/decomp
 mkdir -p ${TMP_DIR}
 
 # assemble instruction
