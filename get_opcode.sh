@@ -12,7 +12,7 @@
 
 # example:
 # ```
-# $ bap-mc --arch==arch64 --show-bil -- $(./get_opcode "mov x0, #1")
+# $ bap-mc --arch==aarch64 --show-bil -- $(./get_opcode "mov x0, #1")
 # ... bap-mc output of 
 # ```
 
