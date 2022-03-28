@@ -36,3 +36,61 @@ $ bap-mc --arch=aarch64 --show-bil -- $(./get_opcode.sh "cmp x20, x19")
 `generate_bil.sh` takes in a `.c` file and runs `aarch64-gnu-gcc` and `bap -d`
 to generate BIL from the compiler output. It also generates the corresponding
 assembly in a `.s` file.
+
+## Missing Instructions
+
+List of instructions with implementation status
+
+- [ ] ADDSWri
+- [ ] ADDSXri
+- [ ] ANDSWri
+- [ ] ANDSXrs
+- [ ] ANDXri
+- [ ] BRK
+- [ ] CLZWr
+- [ ] CSELWr
+- [ ] CSELXr
+- [ ] CSINCWr
+- [ ] EORWri
+- [ ] HINT
+- [ ] LDAXRX
+- [ ] LDRBBroW
+- [ ] LDRQui
+- [ ] LDRWpost
+- [ ] LDRXpost
+- [ ] LDURBBi
+- [ ] LDURQi
+- [ ] LDURSWi
+- [ ] LDURWi
+- [ ] LDURXi
+- [ ] LDXRX
+- [ ] LSLVWr
+- [ ] LSRVWr
+- [ ] LSRVXr
+- [ ] MADDWrrr
+- [ ] MADDXrrr
+- [ ] MOVNXi
+- [ ] MSUBWrrr
+- [ ] MSUBXrrr
+- [ ] ORRWri
+- [ ] ORRXri
+- [ ] SDIVWr
+- [ ] SDIVXr
+- [ ] STLXRX
+- [ ] STRBBpost
+- [ ] STRHHui
+- [ ] STRQui
+- [ ] STRWpost
+- [ ] STRXpost
+- [ ] STRXpre
+- [ ] STURBBi
+- [ ] STURQi
+- [ ] STURWi
+- [ ] STURXi
+- [ ] STXRX
+- [ ] TBNZW
+- [ ] TBNZX
+- [ ] TBZW
+- [ ] TBZX
+- [ ] UDIVWr
+- [ ] UDIVXr
