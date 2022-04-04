@@ -1,3 +1,6 @@
+(* SINCE BAP PR #1410, WE CAN USE THE LISP (special :dmb) FUNCTION
+  so this code is OBSOLETE *)
+
 open Core_kernel
 open Bap_core_theory
 open Bap.Std
