@@ -38,9 +38,9 @@ echo "Instruction: $instruction"
 echo "Opcode: $opcode"
 
 if [ -z "$bap_mc_options" ]; then
-    bap-mc --show-bil --arch=aarch64 -- $opcode
+    bap mc --show-bil --arch=aarch64 -- $opcode
 else
-    bap-mc --show-bil --arch=aarch64 "$bap_mc_options" -- $opcode
+    bap mc --show-bil --arch=aarch64 "$bap_mc_options" -- $opcode
 fi
 
 cd "$initial_dir"
