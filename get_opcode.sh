@@ -23,7 +23,11 @@ TMP_DIR=/tmp/${USER}/decomp
 mkdir -p ${TMP_DIR}
 
 # assemble instruction
-echo ${INSN} | aarch64-linux-gnu-as - -o ${TMP_DIR}/tmp.o
+echo ${INSN} | aarch64-linux-gnu-as -march=armv8.5-a - -o ${TMP_DIR}/tmp.o
+return_code=$?
+if [ "$return_code" -ne 0 ]; then
+    exit "$return_code"
+fi
 
 # decompile into insns
 objdump -D ${TMP_DIR}/tmp.o > ${TMP_DIR}/tmp.asm
