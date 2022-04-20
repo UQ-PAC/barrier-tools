@@ -21,7 +21,8 @@ trim() {
 
 # https://stackoverflow.com/a/33271194
 instruction=$(trim ${@:$#}) # last parameter 
-bap_mc_options=$(trim ${*%${!#}}) # all parameters except the last
+# https://stackoverflow.com/a/6968547
+bap_mc_options="${@:(-$#):($#-1)}"  # all parameters except the last
 
 cd "$script_dir"
 

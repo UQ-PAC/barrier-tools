@@ -33,4 +33,4 @@ fi
 objdump -D ${TMP_DIR}/tmp.o > ${TMP_DIR}/tmp.asm
 
 # parsing into nice format that can be interpreted by bap-mc
-cat ${TMP_DIR}/tmp.asm | grep -v "<\.[a-zA-Z0-9]*>" | grep -oE "([0-9a-f]{8})" | sed -r "s/([0-9a-f]{2})/\1 /g; s/([0-9a-f]{2}\s)([0-9a-f]{2}\s)([0-9a-f]{2}\s)([0-9a-f]{2}\s)/\4\3\2\1/"
+cat ${TMP_DIR}/tmp.asm | grep -v "<\.[a-zA-Z0-9]*>" | grep -oP '(?<=\s)([0-9a-f]{8})' |  sed -r "s/([0-9a-f]{2})/\1 /g; s/([0-9a-f]{2}\s)([0-9a-f]{2}\s)([0-9a-f]{2}\s)([0-9a-f]{2}\s)/\4\3\2\1/"
