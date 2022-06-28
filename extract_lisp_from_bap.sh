@@ -2,7 +2,6 @@
 # with the relevant lisp files from within the bap source directory.
 # use it like: ./extract_lisp_from_bap.sh "${HOME}/bap"
 
-CURR_SWITCH=$(opam switch show)
 if [ $# -ne 1 ]; then
     bap_src_dir=.
 else
