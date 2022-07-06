@@ -1,0 +1,44 @@
+OASISFormat: 0.4
+Name:        bap-frames
+Version:     1.0.0-alpha
+Synopsis:    data format for execution traces
+Authors:     BAP Team
+License:     MIT
+Plugins:     META (0.4)
+BuildTools:  ocamlbuild
+
+Library "bap-frames"
+  Path:            lib/
+  Modules:         Frame_arch, Frame_events, Frame_mach, Frame_piqi, Frame_reader, Frame_enum
+  FindlibName:     bap-frames
+  BuildTools:      piqi
+  BuildDepends:    bap, bap-traces, core_kernel, core_kernel.binary_packing, piqirun.pb, ppx_jane
+  CompiledObject:  best
+  DataFiles:       ../piqi/*.piqi
+
+Library "bap-plugin-frames"
+  Path:            plugin
+  FindlibName:     bap-plugin-frames
+  Modules:         Frame_trace_plugin
+  BuildDepends:    bap, bap-frames, bap-traces
+  XMETADescription: read traces in frames format
+
+Library "frames-tests"
+  Path:            test
+  FindlibName:     bap-frames-tests
+  Build$:          flag(tests)
+  Install:         false
+  Modules:         Test_enum
+  BuildDepends:    bap-frames, oUnit
+
+Executable run_frames_tests
+  Path:            test/
+  Build$:          flag(tests)
+  CompiledObject:  best
+  BuildDepends:    bap-frames-tests
+  Install:         false
+  MainIs:          run_frames_tests.ml
+
+Test unit_tests
+  TestTools: run_frames_tests
+  Command: $run_frames_tests -runner sequential
